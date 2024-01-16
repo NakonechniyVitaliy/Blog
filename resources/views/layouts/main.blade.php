@@ -33,7 +33,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
                         <div class="dropdown-menu" aria-labelledby="blogDropdown">
                             <a class="dropdown-item" href="blog.html">Blog Archive</a>
-                            <a class="dropdown-item" href="blog-single.html">Blog Post</a>
+                            <a class="dropdown-item" href="blog-single.html">Blogg Post</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

@@ -48,13 +48,6 @@
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
                             <div class="form-group">
-                                <label >Password</label>
-                                <input type="text" class="form-control" name="password" placeholder="Password">
-                            </div>
-                            @error('password')
-                            <p class="text-danger">{{ $message }}</p>
-                            @enderror
-                            <div class="form-group">
                                 <label>Select Role</label>
                                 <select class="form-control" name="role">
                                     @foreach($roles as $id => $role)

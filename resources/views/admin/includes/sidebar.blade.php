@@ -4,6 +4,16 @@
     <div class="sidebar">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item mt-3">
+                <a href="{{ route('admin.main.index') }}" class="nav-link">
+                    <i class="nav-icon fa fa-home" aria-hidden="true"></i>
+                    <p>
+                        Main
+                    </p>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item mt-3">
                 <a href="{{ route('admin.user.index') }}" class="nav-link">
                     <i class="nav-icon fa fa-users" aria-hidden="true"></i>
                     <p>

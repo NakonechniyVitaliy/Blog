@@ -19,6 +19,10 @@ Auth::routes(['verify'=>true]);
 Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
     Route::get('/', 'IndexController')->name('main.index');;
 });
+Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], function () {
+    Route::get('/', 'IndexController')->name('post.index');;
+    Route::get('/{post}', 'ShowController')->name('post.show');
+});
 
 Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
 

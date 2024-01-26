@@ -17,22 +17,32 @@
 <header class="edica-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="{{ route('main.index') }}"><img src=" {{ asset('assets/images/logo.svg') }}" alt="Edica"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="navbar-brand" href="{{ route('main.index') }}"><img src=" {{ 'assets/images/logo.svg' }}" alt="Edica"></a>
-                    </li>
+                    @auth()
+                        <li class="nav-item active">
+                            <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Personal Area</a>
+                        </li>
+                    @endauth
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
-                    <li class="nav-item">
-                        <form method="post" action="{{ route('logout') }}">
-                            @csrf
-                            <input type="submit" class="btn btn-outline-primary" value="Logout">
-                        </form>
-                    </li>
+                    @auth()
+                        <li class="nav-item">
+                            <form method="post" action="{{ route('logout') }}">
+                                @csrf
+                                <input type="submit" class="btn btn-outline-primary" value="Logout">
+                            </form>
+                        </li>
+                    @endauth
+                    @guest()
+                        <li class="nav-item">
+                            <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Sign In</a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
@@ -41,7 +51,7 @@
 
 @yield('content')
 
-<section class="edica-footer-banner-section">
+<section class="edica-footer-banner-section mt-5">
     <div class="container">
         <div class="footer-banner" data-aos="fade-up">
             <h1 class="banner-title">Download it now.</h1>

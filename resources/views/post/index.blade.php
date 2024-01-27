@@ -11,7 +11,24 @@
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="{{ asset('storage/' . $post->preview_image) }}" alt="blog post">
                         </div>
-                        <p class="blog-post-category">{{$post->category->title}}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="blog-post-category">{{$post->category->title}}</p>
+                                <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                                    @csrf
+                                    @auth()
+                                        <span>{{ $post->liked_users_count }}</span>
+                                        @if(auth()->user()->likedPost->contains($post->id))
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa fa-heart" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                            </button>
+                                        @endif
+                                    @endauth
+                                </form>
+                            </div>
                         <a href="{{ route('post.show', $post->id) }}" class="blog-post-permalink">
                             <h6 class="blog-post-title">{{ $post->title }}</h6>
                         </a>
@@ -99,4 +116,5 @@
     </div>
 
 </main>
+
 @endsection()

@@ -11,7 +11,30 @@
                         <div class="blog-post-thumbnail-wrapper">
                             <img src="{{ asset('storage/' . $post->preview_image) }}" alt="blog post">
                         </div>
-                        <p class="blog-post-category">{{$post->category->title}}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="blog-post-category">{{$post->category->title}}</p>
+                                @auth()
+                                    <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                                        @csrf
+                                            <span class="d-inline-block">{{ $post->most_liked_post_count }}</span>
+                                            @if(auth()->user()->likedPost->contains($post->id))
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fa fa-heart d-inline-block" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                                </button>
+                                            @else
+                                                <button type="submit" class="border-0 bg-transparent">
+                                                    <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                                </button>
+                                            @endif
+                                    </form>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span class="d-inline-block">{{ $post->most_liked_post_count }}</span>
+                                        <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                    </div>
+                                @endguest
+                            </div>
                         <a href="{{ route('post.show', $post->id) }}" class="blog-post-permalink">
                             <h6 class="blog-post-title">{{ $post->title }}</h6>
                         </a>
@@ -99,4 +122,5 @@
     </div>
 
 </main>
+
 @endsection()

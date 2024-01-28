@@ -16,15 +16,33 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
-                        <p data-aos="fade-up" class="aos-init aos-animate"><a href="#">Lorem ipsum, or lipsum as it is sometimes known,</a> is dummy text used in laying out printed graphic or web designs. The passage is at attributed to an unknown typesetters in 1the 5th century who is thought scrambled with all parts of Cicero’s De. Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out printed graphic or web designs</p>
-                        <h2 class="mb-4 aos-init aos-animate" data-aos="fade-up">Blog single page</h2>
-                        <ul data-aos="fade-up" class="aos-init aos-animate">
-                            <li>What manner of thing was upon me I did not know, but that it was large and heavy and many-legged I could feel.</li>
-                            <li>My hands were at its throat before the fangs had a chance to bury themselves in my neck, and slowly</li>
-                            <li>I forced the hairy face from me and closed my fingers, vise-like, upon its windpipe.</li>
-                        </ul>
-
-                        <blockquote data-aos="fade-up" class="aos-init aos-animate">
+                        @auth()
+                        <form action="{{ route('post.like.store', $post->id) }}" method="post">
+                            @csrf
+                                @if(auth()->user()->likedPost->contains($post->id))
+                                    <div>
+                                        <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
+                                        <button type="submit" class="border-0 bg-transparent d-inline-block" >
+                                            <i class="fa fa-heart" style="font-size: 30pt !important;color:palevioletred" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                @else
+                                    <div>
+                                        <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
+                                        <button type="submit" class="border-0 bg-transparent d-inline-block">
+                                            <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 30pt !important;color:palevioletred"></i>
+                                        </button>
+                                    </div>
+                                @endif
+                        </form>
+                        @endauth
+                        @guest()
+                            <div>
+                                <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
+                                <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 30pt !important;color:palevioletred"></i>
+                            </div>
+                        @endguest
+                        <blockquote data-aos="fade-up" class="aos-init aos-animate mt-5">
                             <p>You are safe here! I shouted above the sudden noise. She looked away from me downhill. The people were coming out of their houses, astonished.</p>
                             <footer class="blockquote-footer">Oluchi Mazi</footer>
                         </blockquote>

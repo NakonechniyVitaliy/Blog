@@ -11,6 +11,7 @@
     <link rel="stylesheet" href=" {{asset('/assets/css/style.css')}}">
     <script src=" {{asset('/assets/vendors/jquery/jquery.min.js')}}"></script>
     <script src=" {{asset('/assets/js/loader.js')}}"></script>
+    <script src="https://kit.fontawesome.com/a7040f048a.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="edica-loader"></div>
@@ -28,6 +29,9 @@
                             <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Personal Area</a>
                         </li>
                     @endauth
+                    <li>
+                        <a href="{{ route('category.index') }}" class="btn btn-outline-primary">Category</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     @auth()

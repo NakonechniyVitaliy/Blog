@@ -16,32 +16,33 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-9 mx-auto">
+                        @auth()
                         <form action="{{ route('post.like.store', $post->id) }}" method="post">
                             @csrf
-                            @auth()
                                 @if(auth()->user()->likedPost->contains($post->id))
                                     <div>
+                                        <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
                                         <button type="submit" class="border-0 bg-transparent d-inline-block" >
                                             <i class="fa fa-heart" style="font-size: 30pt !important;color:palevioletred" aria-hidden="true"></i>
                                         </button>
-                                        <p class="d-inline-block" style="font-size: 24pt">
-                                            UnLike
-                                        </p>
                                     </div>
                                 @else
                                     <div>
+                                        <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
                                         <button type="submit" class="border-0 bg-transparent d-inline-block">
                                             <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 30pt !important;color:palevioletred"></i>
                                         </button>
-                                        <p class="d-inline-block" style="font-size: 24pt">
-                                            Like
-                                        </p>
                                     </div>
                                 @endif
-                            @endauth
                         </form>
-
-                        <blockquote data-aos="fade-up" class="aos-init aos-animate">
+                        @endauth
+                        @guest()
+                            <div>
+                                <span class="d-inline-block" style="font-size: 30pt">{{ $post->most_liked_post_count }}</span>
+                                <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 30pt !important;color:palevioletred"></i>
+                            </div>
+                        @endguest
+                        <blockquote data-aos="fade-up" class="aos-init aos-animate mt-5">
                             <p>You are safe here! I shouted above the sudden noise. She looked away from me downhill. The people were coming out of their houses, astonished.</p>
                             <footer class="blockquote-footer">Oluchi Mazi</footer>
                         </blockquote>

@@ -14,7 +14,7 @@ class Post extends Model
     protected $table = 'posts';
     protected $guarded = false;
 
-    protected $withCount = ['likedUsers'];
+    protected $withCount = ['mostLikedPost'];
 
     public function tags()
     {
@@ -36,4 +36,6 @@ class Post extends Model
     {
         return $this->hasMany(Comments::class, 'post_id', 'id');
     }
+
+
 }

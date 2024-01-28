@@ -29,6 +29,9 @@
                             <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Personal Area</a>
                         </li>
                     @endauth
+                    <li>
+                        <a href="{{ route('category.index') }}" class="btn btn-outline-primary">Category</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     @auth()

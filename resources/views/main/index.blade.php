@@ -28,6 +28,7 @@
             <div class="col-md-8">
                 <section>
                     <div class="row blog-post-row">
+                        <h5 class="widget-title">Random Posts</h5>
                         @foreach($random_posts as $random_post)
                             <div class="col-md-6 blog-post" data-aos="fade-up">
                                 <div class="blog-post-thumbnail-wrapper">
@@ -44,7 +45,7 @@
             </div>
             <div class="col-md-4 sidebar" data-aos="fade-left">
                 <div class="widget widget-post-carousel">
-                    <h5 class="widget-title">Post Lists</h5>
+                    <h5 class="widget-title">Latest Posts</h5>
                     <div class="post-carousel">
                         <div id="carouselId" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">

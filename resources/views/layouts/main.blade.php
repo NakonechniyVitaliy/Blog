@@ -12,6 +12,7 @@
     <script src=" {{asset('/assets/vendors/jquery/jquery.min.js')}}"></script>
     <script src=" {{asset('/assets/js/loader.js')}}"></script>
     <script src="https://kit.fontawesome.com/a7040f048a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="edica-loader"></div>
@@ -30,7 +31,7 @@
                         </li>
                     @endauth
                     <li>
-                        <a href="{{ route('category.index') }}" class="btn btn-outline-primary">Category</a>
+                        <a href="{{ route('category.index') }}" class="btn btn-outline-primary ml-2">Category</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">

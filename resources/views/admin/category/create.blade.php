@@ -31,7 +31,7 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{ route('admin.category.store') }}" method="POST">
+                    <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -42,6 +42,21 @@
                                 <p class="text-danger">Поле не может быть пустым!</p>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label for="category_image">Category image input</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="category_image">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                        @error('category_image')
+                        <p class="text-danger">{{$message}}</p>
+                        @enderror
                         <!-- /.card-body -->
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Create</button>

@@ -6,11 +6,17 @@
             <h1 class="edica-page-title aos-init aos-animate" data-aos="fade-up">{{ $post->title }}</h1>
             <p class="edica-blog-post-meta aos-init aos-animate" data-aos="fade-up" data-aos-delay="200"> {{ $date->format('F') }} {{ $date->day }}, {{ $date->year }}, {{ $date->format('H:i') }} • {{ $post->comments->count() }} Comments</p>
             <section class="blog-post-featured-img aos-init aos-animate" data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center">
+                    <h4 class="d-inline-block mr-2">Tags: </h4>
+                    @foreach($tags as $tag)
+                        <p class="d-inline-block" style="background: lawngreen;line-height:160%; border-radius: 10%;  padding: 3px 5px;">{{ $tag->title }} </p>
+                    @endforeach
+                </div>
                 <img src="{{ asset('storage/' . $post->preview_image) }}" alt="featured image" class="w-100">
             </section>
             <section class="post-content">
                 <div class="row">
-                    <div class="col-lg-9 mx-auto aos-init aos-animate" data-aos="fade-up">
+                    <div class="col-lg-9 mx-auto aos-init aos-animate " data-aos="fade-up">
                        {!! $post->content !!}
                     </div>
                 </div>
@@ -73,7 +79,7 @@
                                     <div>
                                          <b>{{ $comment->user->name }}</b>
                                     </div>
-                                    <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
+                                        <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
                                 </span><!-- /.username -->
                                 {{ $comment->message }}
                             </div>

@@ -12,7 +12,8 @@ class IndexController extends Controller
     {
         $posts = Post::paginate(6);
         $random_posts = Post::get()->random(4);
-        $most_liked_posts = Post::withCount('mostLikedPost')->orderBy('most_liked_post_count', 'DESC')->get()->take(4);
-       return view('post.index', compact('posts','random_posts', 'most_liked_posts'));
+        $most_liked_posts = Post::withCount('mostLikedPost')->orderBy('most_liked_post_count', 'DESC')->get()->take(3);
+        $latest_posts = Post::all()->sortByDesc('created_at')->take(4);
+       return view('post.index', compact('posts','random_posts', 'most_liked_posts', 'latest_posts'));
     }
 }

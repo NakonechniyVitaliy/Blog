@@ -7,12 +7,12 @@ use App\Http\Requests\Admin\Category\UpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Category $category)
     {
         $data = $request->validated();
-        $category->update($data);
+        $category = $this->service->update($data, $category);
        return view('admin.category.show', compact('category'));
     }
 }

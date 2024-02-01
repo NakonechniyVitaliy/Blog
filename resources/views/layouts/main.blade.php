@@ -27,7 +27,7 @@
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     @auth()
                         <li class="nav-item active">
-                            <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Personal Area</a>
+                            <a href="{{ route('personal.profile.index') }}" class="btn btn-outline-primary">Personal Area</a>
                         </li>
                     @endauth
                     <li>

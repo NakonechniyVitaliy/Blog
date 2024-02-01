@@ -15,6 +15,9 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
+    protected $table = 'users';
+    protected $guarded = false;
+
     const ROLE_ADMIN = 0;
     const ROLE_READER = 1;
 
@@ -36,6 +39,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'password',
         'role',
+        'user_image',
+        'user_id',
+        'full_name',
+        'mobile',
+        'address',
     ];
 
     /**

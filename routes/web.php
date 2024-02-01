@@ -42,6 +42,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], 
 
 Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
 
+    Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function () {
+        Route::get('/', 'IndexController')->name('personal.profile.index');
+        Route::get('/{profile}/edit', 'EditController')->name('personal.profile.edit');
+        Route::patch('/{profile}', 'UpdateController')->name('personal.profile.update');
+        Route::patch('/{profile}/image', 'UpdateImageController')->name('personal.profile.update_image');
+    });
     Route::group(['namespace' => 'Main', 'prefix' => 'main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
     });

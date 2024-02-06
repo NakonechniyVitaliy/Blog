@@ -1,14 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-    <section style="background-color: #eee;">
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Main</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('personal.profile.index', auth()->user()->id) }}">Profile</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </div>
+    <section style="background-color: white;margin-top:5vw;">
         <div class="container py-5">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <img src="{{ asset('storage/' . auth()->user()->user_image) }}" style="width: 10vw;height:20vh" alt="avatar"
-                                 class="rounded-circle img-fluid" style="width: 150px;">
+                            <img src="{{ asset('storage/' . auth()->user()->user_image) }}" style="width: 10vw!important;height: 10vw!important;object-fit:cover;" alt="avatar"
+                                 class="rounded-circle img-fluid" >
                             <form action="{{ route('personal.profile.update_image', auth()->user()->id) }}" method="post"  enctype="multipart/form-data" >
                                 @csrf
                                 @method('PATCH')

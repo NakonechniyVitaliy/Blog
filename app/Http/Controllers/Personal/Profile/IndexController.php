@@ -7,8 +7,9 @@ use App\Models\User;
 
 class IndexController extends BaseController
 {
-    public function __invoke()
+    public function __invoke($user)
     {
-       return view('personal.profile.index');
+        $user = User::find($user);
+       return view('personal.profile.index', compact('user'));
     }
 }

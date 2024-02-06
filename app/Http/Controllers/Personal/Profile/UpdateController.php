@@ -15,6 +15,6 @@ class UpdateController extends BaseController
         $user = User::find($user);
         $user = $this->service->update($data, $user);
 
-        return redirect()->route('personal.profile.index');
+        return redirect()->route('personal.profile.index', $user);
     }
 }

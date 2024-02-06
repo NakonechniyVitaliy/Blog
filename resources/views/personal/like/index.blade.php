@@ -1,71 +1,58 @@
-@extends('personal.layouts.main')
+@extends('layouts.main')
 
 @section('content')
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Liked Posts</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Main</a></li>
-                            <li class="breadcrumb-item active">Liked Posts</li>
-                        </ol>
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header -->
-
-        <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
-                <!-- Small boxes (Stat box) -->
-                <div class="row">
-                    <div class="col-6">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">All Posts</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Title</th>
-                                        <th colspan="2" class="text-center">Actions</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($liked_posts as $liked_post)
-                                        <tr>
-                                            <td>{{ $liked_post->id }}</td>
-                                            <td>{{ $liked_post->title }}</td>
-                                            <td><a href="{{ route('admin.post.show', $liked_post->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                                            <td>
-                                                <form action="{{ route('personal.like.delete', $liked_post->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="border-0 bg-transparent"><i class="fa fa-trash text-danger" aria-hidden="true"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Main</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('personal.profile.index', auth()->user()->id) }}">Profile</a></li>
+            <li class="breadcrumb-item active">Likes</li>
+        </ol>
     </div>
+    <main class="blog">
+        <div class="container">
+            <h1 class="edica-page-title" data-aos="fade-up">Blog</h1>
+            <section class="featured-posts-section">
+                <div class="row">
+                    @foreach($liked_posts as $liked_post)
+                        <div class="col-md-4 fetured-post blog-post" data-aos="fade-up">
+                            <div class="blog-post-thumbnail-wrapper">
+                                <img src="{{ asset('storage/' . $liked_post->preview_image) }}" alt="blog post">
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <p class="blog-post-category">{{$liked_post->category->title}}</p>
+                                <p style="color:#7d848b">{{ $liked_post->created_at }}</p>
+                                @auth()
+                                    <form action="{{ route('post.like.store', $liked_post->id) }}" method="post">
+                                        @csrf
+                                        <span class="d-inline-block mr-1">{{ $liked_post->comments_count }}</span>
+                                        <i class="fa fa-comment-o mr-3" aria-hidden="true" style="font-size: 16pt !important;"></i>
+
+                                        <span class="d-inline-block">{{ $liked_post->most_liked_post_count }}</span>
+                                        @if(auth()->user()->likedPost->contains($liked_post->id))
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa fa-heart d-inline-block" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                            </button>
+                                        @else
+                                            <button type="submit" class="border-0 bg-transparent">
+                                                <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                            </button>
+                                        @endif
+                                    </form>
+                                @endauth
+                                @guest()
+                                    <div>
+                                        <span class="d-inline-block">{{ $liked_post->most_liked_post_count }}</span>
+                                        <i class="fa fa-heart-o" aria-hidden="true" style="font-size: 16pt !important;color:palevioletred"></i>
+                                    </div>
+                                @endguest
+                            </div>
+                            <a href="{{ route('post.show', $liked_post->id) }}" class="blog-post-permalink">
+                                <h6 class="blog-post-title">{{ $liked_post->title }}</h6>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        </div>
+    </main>
 @endsection

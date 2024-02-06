@@ -1,9 +1,16 @@
 @extends('layouts.main')
 
 @section('content')
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Posts</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('category.index') }}">Categories</a></li>
+            <li class="breadcrumb-item active">{{ $category->title }}</li>
+        </ol>
+    </div>
 <main class="blog">
     <div class="container">
-        <h1 class="edica-page-title" data-aos="fade-up">Blog</h1>
+        <h3 class="edica-page-title" data-aos="fade-up">{{$category->title}}</h3>
         <section class="featured-posts-section">
                 <div class="row">
                     @foreach($posts as $post)

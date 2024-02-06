@@ -43,14 +43,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Post', 'prefix' => 'posts'], 
 Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
 
     Route::group(['namespace' => 'Profile', 'prefix' => 'profile'], function () {
-        Route::get('/', 'IndexController')->name('personal.profile.index');
+        Route::get('/{profile}/show', 'IndexController')->name('personal.profile.index');
         Route::get('/{profile}/edit', 'EditController')->name('personal.profile.edit');
         Route::patch('/{profile}', 'UpdateController')->name('personal.profile.update');
         Route::patch('/{profile}/image', 'UpdateImageController')->name('personal.profile.update_image');
     });
-    Route::group(['namespace' => 'Main', 'prefix' => 'main'], function () {
-        Route::get('/', 'IndexController')->name('personal.main.index');
-    });
+
     Route::group(['namespace' => 'Like', 'prefix' => 'like'], function () {
         Route::get('/', 'IndexController')->name('personal.like.index');
         Route::delete('/{post}', 'DeleteController')->name('personal.like.delete');
@@ -58,7 +56,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'perso
     Route::group(['namespace' => 'Comment', 'prefix' => 'comment'], function () {
         Route::get('/', 'IndexController')->name('personal.comment.index');
         Route::delete('/{comment}', 'DeleteController')->name('personal.comment.delete');
-        Route::get('/{comment}/edit', 'EditController')->name('personal.comment.edit');
         Route::patch('/{comment}', 'UpdateController')->name('personal.comment.update');
     });
 

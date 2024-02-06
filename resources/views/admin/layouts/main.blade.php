@@ -43,7 +43,10 @@
             </li>
         </ul>
         <ul class="navbar-nav">
-            <li class="nav-item">
+            <li class="nav-item mr-3">
+                <a type="submit" class="btn btn-outline-primary" href="{{route('post.index')}}">Back to Site</a>
+            </li>
+            <li class="nav-item mr-3">
                 <form method="post" action="{{ route('logout') }}">
                     @csrf
                     <input type="submit" class="btn btn-outline-primary" value="Logout">

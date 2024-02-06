@@ -73,15 +73,18 @@
                         <h4>Comments ({{$post->comments->count()}})</h4>
                     </div>
                     @foreach($post->comments as $comment)
-                        <div class="card-comment mt-2 border-bottom ">
-                            <div class="comment-text">
-                                <span class="username">
-                                    <div>
-                                         <b>{{ $comment->user->name }}</b>
-                                    </div>
-                                        <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
-                                </span><!-- /.username -->
-                                {{ $comment->message }}
+                        <div class="card-comment mt-2 border-bottom border-top border-left border-right">
+                            <div class="comment-text mt-2">
+                                <a style="display: block; text-decoration: none" href="{{ route('personal.profile.index', $comment->user->id) }}">
+                                    <span class="username">
+                                        <div>
+                                            <img class="ml-2 border" style="width:6vw;height:6vw;object-fit:cover;border-radius: 5%" src="{{ asset('storage/' . $comment->user->user_image) }}">
+                                            <span class="ml-3">{{ $comment->message }}</span>
+                                            <span class="text-muted float-right mr-3">{{ $comment->created_at->diffForHumans() }}</span>
+                                        </div>
+                                        <b class="text-muted ml-3">{{ $comment->user->name }}</b>
+                                    </span>
+                                </a>
                             </div>
                             <!-- /.comment-text -->
                         </div>

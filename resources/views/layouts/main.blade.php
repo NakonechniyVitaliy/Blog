@@ -19,7 +19,11 @@
 <header class="edica-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-                <a class="navbar-brand" href="{{ route('main.index') }}"><img src=" {{ asset('assets/images/logo.svg') }}" alt="Edica"></a>
+            @if (auth()->user())
+                <a href="{{ route('personal.profile.index', auth()->user()->id) }}" style="text-decoration:none;font-size: 15pt;"><i class="fa fa-user mr-2" style="font-size: 15pt;color:#007bff;" aria-hidden="true"></i>{{ auth()->user()->name }}</a>
+            @else
+                <a href="{{ route('login')}}" style="text-decoration:none;font-size: 15pt;"><i class="fa fa-user mr-2" style="font-size: 15pt;color:grey;" aria-hidden="true"></i>Guest</a>
+            @endif
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -27,15 +31,23 @@
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     @auth()
                         <li class="nav-item active">
-                            <a href="{{ route('personal.profile.index') }}" class="btn btn-outline-primary">Personal Area</a>
+                            <a href="{{ route('personal.profile.index', auth()->user()->id) }}" class="btn btn-outline-primary">Personal Area</a>
                         </li>
                     @endauth
+                    <li>
+                        <a href="{{ route('main.index') }}" class="btn btn-outline-primary ml-2">Main</a>
+                    </li>
                     <li>
                         <a href="{{ route('category.index') }}" class="btn btn-outline-primary ml-2">Category</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     @auth()
+                        @if( auth()->user()->role === 0)
+                            <li class="nav-item mr-2">
+                                <a href="{{route('admin.main.index')}}" class="btn btn-outline-primary">Admin</a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <form method="post" action="{{ route('logout') }}">
                                 @csrf
@@ -45,7 +57,7 @@
                     @endauth
                     @guest()
                         <li class="nav-item">
-                            <a href="{{ route('personal.main.index') }}" class="btn btn-outline-primary">Sign In</a>
+                            <a href="{{ route('login') }}" class="btn btn-outline-primary">Sign In</a>
                         </li>
                     @endguest
                 </ul>
@@ -56,24 +68,16 @@
 
 @yield('content')
 
-<section class="edica-footer-banner-section mt-5">
-    <div class="container">
-        <div class="footer-banner" data-aos="fade-up">
-            <h1 class="banner-title">Download it now.</h1>
-            <div class="banner-btns-wrapper">
-                <button class="btn btn-success"> <img src=" {{ 'assets/images/apple@1x.svg' }}" alt="ios" class="mr-2"> App Store</button>
-                <button class="btn btn-success"> <img src=" {{ 'assets/images/android@1x.svg' }}" alt="android" class="mr-2"> Google Play</button>
-            </div>
-            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>
-        </div>
-    </div>
-</section>
+<div style="width: 20vw; height: 30vh;">
+
+</div>
+
 <footer class="edica-footer" data-aos="fade-up">
     <div class="container">
         <div class="row footer-widget-area">
             <div class="col-md-3">
                 <a href="index.html" class="footer-brand-wrapper">
-                    <img src=" {{ 'assets/images/logo.svg' }}" alt="edica logo">
+                    <img src=" {{ asset('assets/images/logo.svg') }}" alt="edica logo">
                 </a>
                 <p class="contact-details">hello@edica.com</p>
                 <p class="contact-details">+23 3000 000 00</p>

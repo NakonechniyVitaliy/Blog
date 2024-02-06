@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Main</a></li>
+            <li class="breadcrumb-item active">Categories</li>
+        </ol>
+    </div>
 <main class="blog">
     <div class="container">
         <h1 class="edica-page-title" data-aos="fade-up">Categories</h1>

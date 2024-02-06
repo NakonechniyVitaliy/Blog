@@ -1,19 +1,20 @@
-@extends('personal.layouts.main')
+@extends('layouts.main')
 
 @section('content')
+    <div class="col-sm-12">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="{{ route('post.index') }}">Main</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('personal.profile.index', auth()->user()->id) }}">Profile</a></li>
+            <li class="breadcrumb-item active">Comments</li>
+        </ol>
+    </div>
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
-            <div class="container-fluid">
+            <div class="container-fluid mt-5">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h1 class="m-0">Commented Posts</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('personal.main.index') }}">Main</a></li>
-                            <li class="breadcrumb-item active">Commented Posts</li>
-                        </ol>
+                    <div class="col-sm-12">
+                        <h1 class="m-0 text-center">Commented Posts</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -21,11 +22,11 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <section class="content">
+        <section class="content mt-5" style="margin-left: 15vw;" >
             <div class="container-fluid">
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-9">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">All Posts</h3>
@@ -36,7 +37,8 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
+                                        <th >Title</th>
+                                        <th>Time</th>
                                         <th colspan="2" class="text-center">Actions</th>
                                     </tr>
                                     </thead>
@@ -45,7 +47,7 @@
                                         <tr>
                                             <td>{{ $commented_post->id }}</td>
                                             <td>{{ $commented_post->message }}</td>
-                                            <td><a href="{{ route('personal.comment.edit', $commented_post->id) }}"><i class="fa fa-pencil text-success" aria-hidden="true"></i></a></td>
+                                            <td>{{ $commented_post->created_at }}</td>
                                             <td>
                                                 <form action="{{ route('personal.comment.delete', $commented_post->id) }}" method="POST">
                                                     @csrf

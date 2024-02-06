@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('full_name')->default('');
-            $table->string('mobile')->default('');
-            $table->string('address')->default('');
+            $table->string('full_name')->default('-');
+            $table->string('mobile')->default('-');
+            $table->string('address')->default('-');
         });
     }
 

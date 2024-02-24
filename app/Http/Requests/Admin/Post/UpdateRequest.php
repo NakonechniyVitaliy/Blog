@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
         return [
             'title'=>'required|string',
             'content'=>'required|string',
-            'preview_image'=>'required|file',
+            'preview_image'=>'nullable|file',
             'main_image'=>'required|file',
             'category_id'=>'integer|required|exists:categories,id',
             'tag_ids'=>'nullable|array',
